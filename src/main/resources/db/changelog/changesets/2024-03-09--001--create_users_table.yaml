@@ -9,13 +9,12 @@ databaseChangeLog:
             schemaName:  userservice
             columns:
               - column:
-                  name: id
+                  name: user_id
                   type: uuid
                   constraints:
                     defaultValueComputed: 'uuid_generate_v4()'
                     primaryKey: true
                     nullable: false
-                    unique: true
               - column:
                   name: name
                   type: varchar(255)
@@ -26,6 +25,7 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: phone
                   type: varchar(255)
@@ -34,6 +34,11 @@ databaseChangeLog:
               - column:
                   name: password
                   type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(20)
                   constraints:
                     nullable: false
               - column:
@@ -46,4 +51,4 @@ databaseChangeLog:
                   type: timestamp with time zone
               - column:
                   name: deleted_hash
-                  type: varchar(8)
+                  type: uuid
