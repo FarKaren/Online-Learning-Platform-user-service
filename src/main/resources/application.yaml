@@ -37,7 +37,5 @@ eureka:
   instance:
     prefer-ip-address: true
 
-#  profiles:
-#    active: prod
 
 
