@@ -12,6 +12,7 @@ import org.otus.platform.userservice.model.user.UserRole;
 import org.otus.platform.userservice.repository.UserRepository;
 import org.otus.platform.userservice.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+    @Transactional
     @Override
     public UserDto createUser(CreateUserRequest userDto) {
         log.info("invoke createUser() method");
@@ -36,6 +38,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserDto(savedUser);
     }
 
+    @Transactional
     @Override
     public UserDto getUserById(UUID id) {
         log.info("invoke getUserById() method");
@@ -45,6 +48,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserDto(user);
     }
 
+    @Transactional
     @Override
     public UserDto getUserByEmail(String email) {
         log.info("invoke getUserByEmail() method");
@@ -54,6 +58,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserDto(user);
     }
 
+    @Transactional
     @Override
     public UserDto updateUser(UpdateUserRequest dto) {
         log.info("invoke updateUser() method");
@@ -74,6 +79,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserDto(user);
     }
 
+    @Transactional
     @Override
     public UserDto updateUserRole(UUID id, UserRole role) {
         log.info("invoke updateUserRole() method");

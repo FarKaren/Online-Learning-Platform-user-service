@@ -1,5 +1,6 @@
 package org.otus.platform.userservice.exception.exceptionhandler;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.otus.platform.userservice.dto.error.ArgumentNotValidDto;
@@ -34,6 +35,16 @@ public class ExceptionHandlerController {
         return createResponseEntity(
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 new ErrorDto(Integer.toString(HttpStatus.INTERNAL_SERVER_ERROR.value()),
+                        e.getMessage()));
+    }
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorDto> entityNotFoundExceptionHandler(EntityNotFoundException e) {
+        log.error("Entity not found exception. " + e.getMessage());
+        return createResponseEntity(
+                HttpStatus.BAD_REQUEST,
+                new ErrorDto(Integer.toString(HttpStatus.BAD_REQUEST.value()),
                         e.getMessage()));
     }
 
